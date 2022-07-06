@@ -24,6 +24,8 @@
 <h1>USUARIOS</h1>
 
 
+
+
 <!--<div class="row">
     <div class="col-md-2" >
         <a href="{{ route('usuario.create') }}" class="btn btn-block btn-primary btn-md">Agregar Usuario</a>
@@ -52,6 +54,20 @@
         <div class="box-tools pull-right">
         </div>
     </div>
+
+   
+    
+   
+    <!--Mensaje de eliminar usuarios-->
+    <div class="container-fluid">
+    @if(Session::has('eliminado'))
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>{{session('eliminado')}}</strong> 
+    </div>
+    @endif
+    </div>
+    <!--mensaje de eliminar usuarios-->
     <!-- /.box-header -->
     <div class="box-body">
         <div class="row">
@@ -127,7 +143,7 @@
                         </tbody>
                     </table>
                 </div>
-
+               {{$users->links()}} <!--aqui imprime la paginacion --->
 
                             
             </div>
@@ -136,4 +152,12 @@
     </div>
     <!-- /.box-body -->
 </div>
+
+<script>
+    $('#alert').on('closed.bs.alert', function () {
+  // do something…
+  $().alert();
+  $().alert('close');
+})
+</script>
 @endsection

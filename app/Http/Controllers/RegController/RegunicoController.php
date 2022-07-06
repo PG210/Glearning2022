@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Position;
 use App\Area;
+use App\AreaPModel\AreaPos;
+use App\PosUsuModel\PosUsu;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -39,6 +41,8 @@ class RegunicoController extends Controller
              else{
                  //registrar usuario
                  $category = new User();
+                 $Ar = new AreaPos();
+                 $Pos =new PosUsu();
                  $category->firstname=$request->input('nombre');
                  $category->lastname=$request->input('apellido');
                  $category->avatar_id=$request->input('avatar');
@@ -46,7 +50,26 @@ class RegunicoController extends Controller
                  $category->username= $request->input('nameuser');
                  $category->email= $request->input('correo');
                  $category->password=Hash::make($request->input('password_confirmation'));
-                 $category->save();
+                 $category->save(); //aqui guarda los datos del usuario
+                 //debe registrar los datos en la tabla area
+                 $con = $request->nombre;
+                 $consul = DB::table('users')->where('firstname', '=', $con)->first();
+
+                 //realizar la consulta para que siempre sea area=evolucion de lo contrario
+                 //si modifica el area puede que el programa deje de funcionar
+                 $ev="Evolucion";
+                 $area_user_con= DB::table('areas')->where('name', '=', $ev)->first();
+                 $Ar -> area_id=$area_user_con->id;
+                 $Ar->user_id = $consul->id;
+                 $Ar ->save();
+                 
+                 //position_user
+                 $Pos->user_id = $consul->id;
+                 $pos_user_con = DB::table('positions')->where('name', '=', $ev)->first();
+                 $Pos->position_id = $pos_user_con->id;
+                 $Pos->save();
+
+                 //return $consul->id;
                  Session::flash('usu_reg', 'Usuario registrado con éxito!');
              }
 

@@ -207,11 +207,11 @@
                         @csrf
                         <div class="form-group">
                             <label for="uploadedfile">Eliga un archivo .cvs</label>
-                            <input type="file" name="uploadedfile" id="uploadedfile" class="form-control-file">
+                            <input type="file" name="uploadedfile" id="uploadedfile" class="form-control-file" required>
                         </div>
                         <div class="form-group">
                             <label for="nombre">Descripciòn</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control-file">
+                            <input type="text" name="nombre" id="nombre" class="form-control-file" required>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a href="{{url('/usuario')}}" class="btn-nu btn-secondary me-md-2" type="button"><span>Volver</span></a>

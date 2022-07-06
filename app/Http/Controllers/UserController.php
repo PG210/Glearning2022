@@ -10,6 +10,7 @@ use App\Area;
 use App\Position;
 use Auth;
 use DB;
+use Session;
 
 
 class UserController extends Controller
@@ -25,7 +26,8 @@ class UserController extends Controller
         $countusers = DB::table('users')->count();
         $status="";
 
-        $users = User::all();
+        //$users = User::all();
+         $users = DB::table('users')->orderBy('users.id', 'ASC')->paginate(5); //aqui hace la paginacion de usuarios
         return view('admin.usuarios', [
             'users' => $users,
             'countusers' => $countusers,
@@ -132,17 +134,30 @@ class UserController extends Controller
         //
         $users = User::find($id);
         $allusers = User::all();
-          
         //codigo actualizado
-       // $area = DB::table('area_user')->where('user_id', '=', $id)->first();
-        //$puser = DB::table('position_user')->where('user_id', '=', $id)->first();
-
-        //$area->delete();
+        $area = DB::table('area_user')->where('user_id', '=', $id)->delete();
+        $puser = DB::table('position_user')->where('user_id', '=', $id)->delete();
+        $challenge = DB::table('challenge_user')->where('user_id', '=', $id)->delete();
+        $gitf= DB::table('gift_user')->where('user_id', '=', $id)->delete();
+        $quiz=DB::table('quiz_participant_answers')->where('user_id', '=', $id)->delete();
+        $read=DB::table('readings')->where('id_user', '=', $id)->delete();
+        $subchap=DB::table('subchapter_user')->where('user_id', '=', $id)->delete();
+        $type=DB::table('type_user')->where('user_id', '=', $id)->delete();
+        $videos=DB::table('videos')->where('id_user', '=', $id)->delete();
+        $cause =DB::table('cause_user')->where('user_id', '=', $id)->delete();
+        $ingusu =DB::table('insignia_user')->where('user_id', '=', $id)->delete();
+        $log_changes=DB::table('log_changes')->where('user_id', '=', $id)->delete();
+        $mensaje=DB::table('messages')->where('id_user', '=', $id)->delete();
+        $outdoors=DB::table('outdoors')->where('id_user', '=', $id)->delete();
+        $pictures=DB::table('pictures')->where('id_user', '=', $id)->delete();
+        $users ->delete();
+        Session::flash('eliminado', 'Usuario eliminado con éxito!');
+        return back();
         //$puser->delete();
        // $users->delete();
         //return back();
 
-       $status="";
+      /* $status="";
         $count=0;
         $countuserchallenge=0;
         $countaea=0;
@@ -161,6 +176,6 @@ class UserController extends Controller
             $status = 'Eliminado correctamente';
         }
         
-        return view('admin.usuarios')->with('status', $status)->with('users', $allusers);                
+        return view('admin.usuarios')->with('status', $status)->with('users', $allusers);   */             
     }
 }

@@ -38,12 +38,11 @@
    
     <div  class="container">
         <div class="row">
-         <div class="col-md-5">
+         <div class="col-md-6">
 
          </div>
-         <div class="col-md-2"  style="margin-top:100px;">
-         <a type="button" href="{{ route('perfilhome') }}" style="color:white;" class="btn btn-primary"><span>Volver</span></a>
-         <a type="button" href="{{ route('perfilhome') }}" style="color:white;" class="btn btn-primary"><span>Perfil</span></a>
+         <div class="col-md-1"  style="margin-top:100px;">
+         <a type="button" href="{{ route('perfilhome') }}" style="color:black; background-color:#47EACD" class="btn"><span>Perfil</span></a>
         </div>
          <div class="col-md-5">
              

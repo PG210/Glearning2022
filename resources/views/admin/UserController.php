@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+//use App\Http\Controllers\Session;
 use App\Subchapter;
 use App\User;
 use App\Area;
 use App\Position;
 use Auth;
 use DB;
+
+
 
 
 class UserController extends Controller

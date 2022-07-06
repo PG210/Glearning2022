@@ -42,12 +42,12 @@
           @csrf
           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
+                    <div class="panel-heading" role="tab" id="headingOne" style="color:black; background-color:#1bf9cd">
                     <h4 class="panel-title">
                         <a style="text-decoration: none;" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         <h4> Datos Personales </h4>
                         </a>
-                    </h4>
+                      </h4>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
@@ -99,12 +99,12 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingTwo">
+                    <div class="panel-heading" role="tab" id="headingTwo" style="color:black; background-color:#ffbd03">
                     <h4 class="panel-title">
                         <a style="text-decoration: none;" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                        <h4> Elegir Avatar Femenino </h4>
                         </a>
-                    </h4>
+                    </h4>                  
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                     <div class="panel-body">
@@ -141,7 +141,7 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingTre">
+                    <div class="panel-heading" role="tab" id="headingTre"  style="color:black; background-color:#2BFF92">
                     <h4 class="panel-title">
                         <a style="text-decoration: none;" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTre" aria-expanded="false" aria-controls="collapseTre">
                         <h4>Elegir Avatar Masculino</h4>
@@ -187,10 +187,10 @@
                 </div>
              <!--buton enviar-->
              <br>
-               <button type="submit"  class="btn btn-primary" >
+               <button type="submit"  class="btn" style="color:black; background-color:#47EACD">
                       Continuar
               </button>
-              <a href="/home" type="button"  class="btn btn-primary" >
+              <a href="/home" type="button"  class="btn" style="color:black; background-color:#4EFF6B">
                       Atras
               </a>
              
@@ -200,10 +200,5 @@
 
       </div>
       <br>
-      <footer>
-        <p >&#169; Copyright Evolución<br>
-        <a href="https://www.evolucion.co/" style="color:white;"> <span>https://www.evolucion.co</span></a></p>
-    </footer>
-
   </body>
 </html>
