@@ -98,10 +98,12 @@
     </tr>
   </thead>
   <tbody>
-
+  <?php
+   $conta=1;
+  ?>
   @foreach($listado as $p)
     <tr>
-      <th scope="row">{{$p->id}}</th>
+      <th scope="row">{{$conta++}}</th>
       <td>{{$p->ruta}}</td>
       <td>{{$p->descripcion}}</td>
       <td><a href="{{route('carga_usu', $p->ruta)}}" class="button">Guardar</a>

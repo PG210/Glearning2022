@@ -57,10 +57,11 @@
                           @foreach($answers as $answe)
                         <input type="hidden" name="idquizzes[]" value="{{$answe->quizquestion_id}}">
                             <div class="form-group">
+
                               <div class="radio">
                                   <label>
-                                  <input type="radio" name="{{$answe->quizquestion_id}}" value="{{ $answe->id }}">
-                                      {{ $answe->answer }} 
+                                  <input type="radio" name="{{$answe->quizquestion_id}}" value="{{ $answe->id }}" style="margin-left:90px;">
+                                      {{ $answe->answer }} &nbsp;&nbsp;&nbsp;
                                   </label>
                               </div>
                             </div>

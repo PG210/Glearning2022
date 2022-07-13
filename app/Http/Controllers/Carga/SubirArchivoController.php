@@ -94,74 +94,50 @@ class SubirArchivoController extends Controller
         $f=$c;*/
       
       for($i=1; $i<sizeof($array); ++$i){
-         
-          $datovalidar = User::all()->where('username', '=', $array[$i][6])->first();
-          $validaremail = User::all()->where('email', '=', $array[$i][2])->first();
-          
-          if($datovalidar!=NULL){
-          
+            if(isset($array[$i][6])){
 
-            $contador=$f;
-            if($i+$contador<=sizeof($array)){
-            
-            //return $contador;
-            $nom = $datovalidar->firstname;
-            $usu = $datovalidar->username;
-            $email = $datovalidar->email;
-            $msj="¡Datos Repetidos: ".$nom.", Cambie el nombre de usuario  ".$usu.", ò Email".$email."!";
-
-            return back()->with('mensaje',$msj);
-            }
-            
-          } 
-        else{
-          if($validaremail!=NULL){
-
-            $msj="¡Datos Repetidos: Cambie el Email".$validaremail."!";
-            return back()->with('mensaje',$msj);
-          }else{
-
-            $category = new User();
-            $category->firstname=$array[$i][0];
-            $category->lastname=$array[$i][1];
-            $category->avatar_id=$array[$i][9];
-            $category->sexo=$array[$i][3];
-            $category->username= $array[$i][6];
-            $category->email= $array[$i][2];
-            $category->password=Hash::make($array[$i][7]);
-            $category->save();
-              //debe registrar los datos en la tabla area
-            $Ar = new AreaPos();
-            $Pos =new PosUsu();
-            $consul = User::all()->where('username', '=', $array[$i][6])->first();
-            //realizar la consulta para que siempre sea area=evolucion de lo contrario
-            //si modifica el area puede que el programa deje de funcionar
-            $ev="Evolucion";
-            $area_user_con= DB::table('areas')->where('name', '=', $ev)->first();
-            $Ar -> area_id=$area_user_con->id;
-            $Ar->user_id = $consul->id;
-            $Ar ->save();
-            
-            //position_user
-            $Pos->user_id = $consul->id;
-            $pos_user_con = DB::table('positions')->where('name', '=', $ev)->first();
-            $Pos->position_id = $pos_user_con->id;
-            $Pos->save();
-
-            $msj="¡Usuarios Registrados Éxitosamente!";
-            return back()->with('mensaje',$msj);
-
-          }
-         
-
-
-         }
-        
-          
+            $usern= $array[$i][6];
+            $userem = $array[$i][2];
            
+            $datovalidar = DB::table('users')->where('username', '=', $usern)->count();
+            $validaremail = DB::table('users')->where('email', '=', $userem)->count();
+           
+            if($datovalidar==0 && $validaremail==0){
 
-      }
-      return back();
+              $category = new User();
+              $category->firstname=$array[$i][0];
+              $category->lastname=$array[$i][1];
+              $category->avatar_id=$array[$i][9];
+              $category->sexo=$array[$i][3];
+              $category->username= $array[$i][6];
+              $category->email= $array[$i][2];
+              $category->password=Hash::make($array[$i][7]);
+              $category->save();
+                //debe registrar los datos en la tabla area
+              $Ar = new AreaPos();
+              $Pos =new PosUsu();
+              $consul = User::all()->where('username', '=', $array[$i][6])->first();
+              //realizar la consulta para que siempre sea area=evolucion de lo contrario
+              //si modifica el area puede que el programa deje de funcionar
+              $ev="Evolucion";
+              $area_user_con= DB::table('areas')->where('name', '=', $ev)->first();
+              $Ar -> area_id=$area_user_con->id;
+              $Ar->user_id = $consul->id;
+              $Ar ->save();
+              
+              //position_user
+              $Pos->user_id = $consul->id;
+              $pos_user_con = DB::table('positions')->where('name', '=', $ev)->first();
+              $Pos->position_id = $pos_user_con->id;
+              $Pos->save();       
+  
+
+            }
+          }
+           
+         }
+         $msj="¡Usuarios Registrados Éxitosamente!";
+         return back()->with('mensaje',$msj);
     }
 
   public function eliminar($id){
